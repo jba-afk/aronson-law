@@ -1,26 +1,132 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --aronson-navy: #071726;
+  --aronson-navy-deep: #030b13;
+  --aronson-garnet: #8b1e2d;
+  --aronson-garnet-light: #a42a3a;
+  --chesapeake-gold: #c59a3d;
+  --maryland-ivory: #faf7f2;
+  --paper: #ffffff;
+  --ink: #102033;
+  --muted: #5d6673;
+  --border: #e6ded2;
+
+  --shadow-soft: 0 12px 30px rgba(7, 23, 38, 0.08);
+  --shadow-card: 0 10px 24px rgba(7, 23, 38, 0.1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  margin: 0;
+  background: var(--maryland-ivory);
+  color: var(--ink);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: var(--aronson-garnet);
+  color: white;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: min(1200px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.section {
+  padding: 88px 0;
+}
+
+.eyebrow {
+  color: var(--aronson-garnet);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.serif {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.section-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.25rem, 4vw, 3.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.accent-rule {
+  width: 84px;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--aronson-garnet) 0%,
+    var(--aronson-garnet) 55%,
+    var(--chesapeake-gold) 55%,
+    var(--chesapeake-gold) 100%
+  );
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 3px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease;
+}
+
+.btn-primary {
+  background: linear-gradient(180deg, var(--aronson-garnet-light), var(--aronson-garnet));
+  color: white;
+  box-shadow: 0 10px 20px rgba(139, 30, 45, 0.22);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(139, 30, 45, 0.28);
+}
+
+.btn-secondary {
+  border: 1px solid var(--chesapeake-gold);
+  color: white;
+  background: rgba(7, 23, 38, 0.2);
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  background: rgba(197, 154, 61, 0.16);
+}
+
+.card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--aronson-garnet);
+  border-radius: 5px;
+  box-shadow: var(--shadow-soft);
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: min(100% - 32px, 1200px);
+  }
+
+  .section {
+    padding: 64px 0;
+  }
 }
