@@ -16,8 +16,8 @@ export default function Navbar() {
           <Image
             src="/brand/logo.png"
             alt="Aronson Law LLC"
-            width={210}
-            height={64}
+            width={290}
+            height={88}
             priority
           />
         </Link>
