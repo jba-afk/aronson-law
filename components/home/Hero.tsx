@@ -1,36 +1,46 @@
+import Link from "next/link";
+
 export default function Hero() {
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#050814] text-white">
+    <section className="relative min-h-[720px] overflow-hidden bg-[var(--aronson-navy-deep)] text-white">
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-55"
+        style={{ backgroundImage: "url('/hero/annapolis-evening.jpg')" }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/20" />
 
-      <div className="mx-auto flex max-w-7xl flex-col items-center px-6 text-center">
+      <div className="container relative z-10 flex min-h-[720px] items-center">
+        <div className="max-w-2xl">
+          <p className="eyebrow mb-5">Practical Counsel · Proven Advocacy</p>
 
-        <p className="mb-6 text-sm font-semibold uppercase tracking-[0.35em] text-[#560C13]">
-          Strategic Representation • Proven Advocacy
-        </p>
+          <h1 className="serif text-6xl leading-[0.95] tracking-[-0.04em] md:text-7xl">
+            Sophisticated Representation.
+            <br />
+            Personal Commitment.
+          </h1>
 
-        <h1 className="max-w-5xl text-5xl font-bold leading-tight md:text-7xl">
-          Results Matter.
-          <br />
-          Your Attorney Should Too.
-        </h1>
+          <div className="accent-rule my-7" />
 
-        <p className="mt-8 max-w-2xl text-xl leading-8 text-gray-300">
-          Aronson Law provides sophisticated legal representation for
-          individuals, families, and businesses throughout Maryland.
-        </p>
+          <p className="max-w-xl text-lg leading-8 text-white/90">
+            Aronson Law provides thoughtful legal counsel and determined
+            advocacy for individuals, families, and businesses throughout
+            Maryland.
+          </p>
 
-        <div className="mt-12 flex gap-5">
-          <button className="rounded-md bg-[#560C13] px-8 py-4 font-semibold transition hover:brightness-110">
-            Schedule a Consultation
-          </button>
+          <div className="mt-9 flex flex-wrap gap-4">
+            <Link href="/contact" className="btn btn-primary">
+              Schedule Consultation
+            </Link>
+            <Link href="/practice-areas" className="btn btn-secondary">
+              Explore Practice Areas
+            </Link>
+          </div>
 
-          <button className="rounded-md border border-white/30 px-8 py-4 font-semibold transition hover:bg-white hover:text-black">
-            Practice Areas
-          </button>
+          <p className="mt-8 text-sm text-white/75">
+            Serving individuals, families, and businesses across Maryland.
+          </p>
         </div>
-
       </div>
-
     </section>
   );
 }
