@@ -130,3 +130,33 @@ a {
     padding: 64px 0;
   }
 }
+.nav-link {
+  position: relative;
+  padding: 8px 0;
+  transition: color 220ms ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--aronson-garnet),
+    var(--chesapeake-gold)
+  );
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 220ms ease;
+}
+
+.nav-link:hover {
+  color: var(--chesapeake-gold);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
