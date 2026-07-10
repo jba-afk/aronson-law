@@ -23,23 +23,23 @@ const practiceAreas = [
 export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-[rgba(197,154,61,0.28)] bg-[var(--maryland-ivory)] shadow-[0_6px_24px_rgba(7,23,38,0.08)]">
-      <div className="container flex min-h-24 items-center justify-between gap-10">
+<div className="container flex min-h-[150px] items-center justify-between gap-10">
         <Link
           href="/"
           aria-label="Aronson Law home"
           className="flex shrink-0 items-center"
         >
           <Image
-            src="/brand/logo.png"
-            alt="Aronson Law LLC"
-            width={320}
-            height={86}
-            priority
-            className="h-auto w-[250px] object-contain xl:w-[300px]"
-          />
+  src="/brand/logo.png"
+  alt="Aronson Law LLC"
+  width={230}
+  height={150}
+  priority
+  className="h-[130px] w-auto object-contain"
+/>
         </Link>
 
-        <nav className="hidden items-center gap-10 text-[0.95rem] font-bold uppercase tracking-[0.045em] text-[var(--aronson-navy)] lg:flex">
+<nav className="hidden items-center gap-11 text-[0.95rem] font-bold uppercase tracking-[0.05em] text-[var(--aronson-navy)] lg:flex">
           <Link className="nav-link" href="/">
             Home
           </Link>
