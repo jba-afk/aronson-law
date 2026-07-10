@@ -186,8 +186,9 @@ a {
 }
 
 .nav-link:hover {
-  color: var(--chesapeake-gold);
+  color: var(--aronson-garnet);
 }
+
 
 .nav-link:hover::after {
   transform: scaleX(1);
