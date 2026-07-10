@@ -2,8 +2,8 @@
 
 :root {
   --aronson-navy: #071726;
+  --aronson-garnet: #7A1423;
   --aronson-navy-deep: #030b13;
-  --aronson-garnet: #8b1e2d;
   --aronson-garnet-light: #a42a3a;
   --chesapeake-gold: #c59a3d;
   --maryland-ivory: #faf7f2;
@@ -192,4 +192,20 @@ a {
 
 .nav-link:hover::after {
   transform: scaleX(1);
+
+  .dropdown-link {
+  display: block;
+  padding: 0.75rem 1.25rem;
+  color: var(--ink);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: normal;
+  text-transform: none;
+  transition:
+    color 200ms ease,
+    background-color 200ms ease,
+    padding-left 200ms ease;
+}
+
+
 }
