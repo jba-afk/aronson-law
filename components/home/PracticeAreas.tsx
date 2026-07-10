@@ -13,13 +13,14 @@ export default function PracticeAreas() {
       />
 
       <Container>
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-7 md:grid-cols-2">
           {practiceAreas.map((area) => (
             <PracticeCard
               key={area.href}
               title={area.title}
               description={area.description}
               href={area.href}
+              icon={area.icon}
             />
           ))}
         </div>
