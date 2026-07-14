@@ -2,7 +2,7 @@
 
 :root {
   --aronson-navy: #071726;
-  --aronson-garnet: #7A1423;
+  --aronson-garnet: #7a1423;
   --aronson-navy-deep: #030b13;
   --aronson-garnet-light: #a42a3a;
   --chesapeake-gold: #c59a3d;
@@ -77,22 +77,31 @@ a {
   );
 }
 
+/* Buttons */
+
 .btn {
   display: inline-flex;
+  min-height: 48px;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
   padding: 0 24px;
   border-radius: 3px;
   font-size: 0.82rem;
   font-weight: 800;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease;
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    background 220ms ease;
 }
 
 .btn-primary {
-  background: linear-gradient(180deg, var(--aronson-garnet-light), var(--aronson-garnet));
+  background: linear-gradient(
+    180deg,
+    var(--aronson-garnet-light),
+    var(--aronson-garnet)
+  );
   color: white;
   box-shadow: 0 10px 20px rgba(139, 30, 45, 0.22);
 }
@@ -104,8 +113,8 @@ a {
 
 .btn-secondary {
   border: 1px solid var(--chesapeake-gold);
-  color: white;
   background: rgba(7, 23, 38, 0.2);
+  color: white;
 }
 
 .btn-secondary:hover {
@@ -113,23 +122,17 @@ a {
   background: rgba(197, 154, 61, 0.16);
 }
 
+/* Cards */
+
 .card {
-  background: var(--paper);
   border: 1px solid var(--border);
   border-top: 4px solid var(--aronson-garnet);
   border-radius: 5px;
+  background: var(--paper);
   box-shadow: var(--shadow-soft);
 }
 
-@media (max-width: 768px) {
-  .container {
-    width: min(100% - 32px, 1200px);
-  }
-
-  .section {
-    padding: 64px 0;
-  }
-}
+/* Navigation */
 
 .nav-link {
   position: relative;
@@ -138,43 +141,12 @@ a {
 }
 
 .nav-link::after {
-  content: "";
   position: absolute;
-  left: 0;
   bottom: 2px;
+  left: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(
-    90deg,
-    var(--aronson-garnet),
-    var(--chesapeake-gold)
-  );
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 220ms ease;
-}
-
-.nav-link:hover {
-  color: var(--chesapeake-gold);
-}
-
-.nav-link:hover::after {
-  transform: scaleX(1);
-}
-
-.nav-link {
-  position: relative;
-  padding: 8px 0;
-  transition: color 220ms ease;
-}
-
-.nav-link::after {
   content: "";
-  position: absolute;
-  left: 0;
-  bottom: 2px;
-  width: 100%;
-  height: 2px;
   background: linear-gradient(
     90deg,
     var(--aronson-garnet),
@@ -189,11 +161,11 @@ a {
   color: var(--aronson-garnet);
 }
 
-
 .nav-link:hover::after {
   transform: scaleX(1);
+}
 
-  .dropdown-link {
+.dropdown-link {
   display: block;
   padding: 0.75rem 1.25rem;
   color: var(--ink);
@@ -207,5 +179,311 @@ a {
     padding-left 200ms ease;
 }
 
+.dropdown-link:hover,
+.dropdown-link:focus {
+  padding-left: 1.5rem;
+  background: var(--maryland-ivory);
+  color: var(--aronson-garnet);
+  outline: none;
+}
 
+/* Architectural background animation */
+
+@keyframes architecturalFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes architecturalDrawX {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes architecturalDrawY {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes architecturalDetail {
+  from {
+    opacity: 0;
+    transform: scale(0.75);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Construction blueprint animation */
+
+.blueprint-grid {
+  opacity: 0;
+  transition: opacity 1.2s ease-out;
+}
+
+.blueprint-visible .blueprint-grid {
+  opacity: 0.58;
+}
+
+.blueprint-lines > path,
+.blueprint-lines > line,
+.blueprint-lines > polyline,
+.blueprint-lines > polygon {
+  opacity: 0;
+  stroke-dasharray: 1800;
+  stroke-dashoffset: 1800;
+}
+
+.blueprint-visible .blueprint-stage-1 > * {
+  animation: blueprintDraw 2.2s ease-out 0.2s forwards;
+}
+
+.blueprint-visible .blueprint-stage-2 > * {
+  animation: blueprintDraw 2s ease-out 0.9s forwards;
+}
+
+.blueprint-visible .blueprint-stage-3 > * {
+  animation: blueprintDraw 1.8s ease-out 1.5s forwards;
+}
+
+.blueprint-visible .blueprint-stage-4 > * {
+  animation: blueprintDraw 1.6s ease-out 2s forwards;
+}
+
+.blueprint-visible .blueprint-stage-5 > * {
+  animation: blueprintDraw 1.5s ease-out 2.4s forwards;
+}
+
+.blueprint-visible .blueprint-stage-6 > * {
+  animation: blueprintDraw 1.8s ease-out 2.7s forwards;
+}
+
+.blueprint-details > * {
+  opacity: 0;
+  transform: scale(0.4);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.blueprint-visible .blueprint-details > * {
+  animation: blueprintDetail 700ms ease-out 3.4s forwards;
+}
+
+@keyframes blueprintDraw {
+  from {
+    opacity: 0;
+    stroke-dashoffset: 1800;
+  }
+
+  to {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes blueprintDetail {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Family courthouse animation */
+
+.family-sketch-grid {
+  opacity: 0;
+  transition: opacity 1.1s ease-out;
+}
+
+.family-courthouse-visible .family-sketch-grid {
+  opacity: 1;
+}
+
+.family-drawing-lines > path,
+.family-drawing-lines > line,
+.family-drawing-lines > polyline,
+.family-drawing-lines > polygon,
+.family-drawing-lines > circle {
+  opacity: 0;
+  stroke-dasharray: 1800;
+  stroke-dashoffset: 1800;
+}
+
+.family-courthouse-visible .family-stage-1 > * {
+  animation: familyLineDraw 1.8s ease-out 150ms forwards;
+}
+
+.family-courthouse-visible .family-stage-2 > * {
+  animation: familyLineDraw 1.5s ease-out 650ms forwards;
+}
+
+.family-courthouse-visible .family-stage-3 > * {
+  animation: familyLineDraw 1.35s ease-out 1.1s forwards;
+}
+
+.family-courthouse-visible .family-stage-4 > * {
+  animation: familyLineDraw 1.5s ease-out 1.55s forwards;
+}
+
+.family-courthouse-visible .family-stage-5 > * {
+  animation: familyLineDraw 1.1s ease-out 2.55s forwards;
+}
+
+.family-figures > * {
+  opacity: 0;
+  stroke-dasharray: 700;
+  stroke-dashoffset: 700;
+}
+
+.family-courthouse-visible .family-figures > * {
+  animation: familyFigureDraw 1.65s ease-out forwards;
+}
+
+.family-courthouse-visible .family-figures > *:nth-child(-n + 8) {
+  animation-delay: 1.85s;
+}
+
+.family-courthouse-visible .family-figures > *:nth-child(n + 9):nth-child(-n + 18) {
+  animation-delay: 2.05s;
+}
+
+.family-courthouse-visible .family-figures > *:nth-child(n + 19):nth-child(-n + 31) {
+  animation-delay: 2.25s;
+}
+
+.family-courthouse-visible .family-figures > *:nth-child(n + 32) {
+  animation-delay: 2.45s;
+}
+
+.family-doorway-glow {
+  opacity: 0;
+}
+
+.family-courthouse-visible .family-doorway-glow {
+  animation: familyGlowIn 900ms ease-out 2.8s forwards;
+}
+
+@keyframes familyLineDraw {
+  from {
+    opacity: 0;
+    stroke-dashoffset: 1800;
+  }
+
+  to {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes familyFigureDraw {
+  from {
+    opacity: 0;
+    stroke-dashoffset: 700;
+  }
+
+  to {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes familyGlowIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive layout */
+
+@media (max-width: 768px) {
+  .container {
+    width: min(100% - 32px, 1200px);
+  }
+
+  .section {
+    padding: 64px 0;
+  }
+}
+
+/* Reduced-motion accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+
+  .blueprint-grid {
+    opacity: 0.58;
+    transition: none;
+  }
+
+  .blueprint-lines > path,
+  .blueprint-lines > line,
+  .blueprint-lines > polyline,
+  .blueprint-lines > polygon {
+    opacity: 1;
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+    animation: none !important;
+  }
+
+  .blueprint-details > * {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+  }
+
+  .family-sketch-grid {
+    opacity: 1;
+    transition: none;
+  }
+
+  .family-drawing-lines > *,
+  .family-figures > * {
+    opacity: 1;
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+    animation: none !important;
+  }
+
+  .family-doorway-glow {
+    opacity: 1;
+    animation: none !important;
+  }
 }
