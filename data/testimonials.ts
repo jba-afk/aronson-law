@@ -2,6 +2,7 @@ export type Testimonial = {
   id: string;
   quote: string;
   title: string;
+  highlightedEnding?: string;
   reviewer: string;
   reviewerDescription: string;
   source: string;

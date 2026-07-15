@@ -5,7 +5,15 @@ export default function ConstructionLawOverview() {
   return (
     <SplitIllustrationSection
       eyebrow="Construction Law"
-      title="We Understand Construction Projects"
+      title={
+    <>
+        We Understand
+        <br />
+        Construction
+        <br />
+        Projects
+    </>
+}
       illustration={<ConstructionBlueprintIllustration />}
       bullets={[
         "Help solve problems efficiently whenever possible.",

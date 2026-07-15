@@ -3,7 +3,7 @@ import Container from "@/components/ui/Container";
 
 interface SplitIllustrationSectionProps {
   eyebrow?: string;
-  title: string;
+  title: React.ReactNode;
   children: ReactNode;
   illustration: ReactNode;
   bullets?: string[];
@@ -22,7 +22,7 @@ export default function SplitIllustrationSection({
 }: SplitIllustrationSectionProps) {
   return (
     <section
-      className={`relative overflow-hidden bg-white py-20 lg:py-28 ${className}`}
+      className={`relative overflow-hidden bg-white pt-20 pb-28 lg:pt-28 lg:pb-40 ${className}`}
     >
       <Container className="relative z-10">
         <div
@@ -30,7 +30,7 @@ export default function SplitIllustrationSection({
             reverse ? "lg:[&>*:first-child]:order-2" : ""
           }`}
         >
-          <div className="max-w-2xl">
+          <div className="max-w-[560px]">
             {eyebrow && (
               <p className="text-sm font-bold uppercase tracking-[0.18em] text-[var(--chesapeake-gold)]">
                 {eyebrow}
@@ -43,9 +43,9 @@ export default function SplitIllustrationSection({
 
             <div className="mt-6 h-[3px] w-20 bg-gradient-to-r from-[var(--aronson-garnet)] to-[var(--chesapeake-gold)]" />
 
-            <div className="mt-8 space-y-6 text-[17px] leading-8 text-[var(--muted)]">
-              {children}
-            </div>
+            <div className="mt-8 max-w-[560px] space-y-6">
+  {children}
+</div>
 
             {bullets.length > 0 && (
               <ul className="mt-8 space-y-4">

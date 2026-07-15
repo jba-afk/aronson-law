@@ -627,6 +627,9 @@ a {
   animation: none !important;
 }
 
+/* CLOSES THE GLOBAL REDUCED-MOTION BLOCK */
+}
+
   /* Commercial litigation hero */
 
 .commercial-litigation-hero-image {
@@ -757,4 +760,445 @@ a {
     animation: none;
   }
 }
+
+/* Trusts & Estates hero */
+
+.trusts-estates-hero-image {
+  animation: trustsEstatesHeroDrift 24s ease-in-out infinite alternate;
+  transform-origin: center;
 }
+
+.trusts-estates-hero-rule {
+  animation: trustsEstatesHeroRuleDraw 1.15s ease-out 450ms both;
+}
+
+@keyframes trustsEstatesHeroDrift {
+  from {
+    transform: scale(1.04) translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: scale(1.09) translate3d(-0.65%, -0.35%, 0);
+  }
+}
+
+@keyframes trustsEstatesHeroRuleDraw {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trusts-estates-hero-image {
+    animation: none;
+    transform: scale(1.04);
+  }
+
+  .trusts-estates-hero-rule {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+/* Trusts & Estates service cards */
+
+.trusts-estates-service-card {
+  transition:
+    transform 300ms ease,
+    box-shadow 300ms ease,
+    border-color 300ms ease;
+}
+
+.trusts-estates-service-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(197, 154, 61, 0.58);
+  box-shadow: 0 18px 40px rgba(7, 23, 38, 0.13);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trusts-estates-service-card:hover {
+    transform: none;
+  }
+}
+
+
+/* =========================================================
+   Construction Law — Premium Building Assembly Illustration
+   ========================================================= */
+
+.construction-build-illustration {
+  isolation: isolate;
+}
+
+.construction-build-grid {
+  opacity: 0;
+  transition: opacity 900ms ease;
+}
+
+.construction-build-visible .construction-build-grid {
+  opacity: 1;
+}
+
+/* Every structural SVG line begins undrawn. */
+.construction-build-lines path,
+.construction-build-lines circle {
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  animation: none;
+}
+
+/* 1 — Site grid and drafting references */
+.construction-build-visible .construction-build-stage-1 path,
+.construction-build-visible .construction-build-stage-1 circle {
+  animation: construction-build-draw 900ms ease 120ms forwards;
+}
+
+/* 2 — Foundation */
+.construction-build-visible .construction-build-stage-2 path,
+.construction-build-visible .construction-build-stage-2 circle {
+  animation: construction-build-draw 1.1s ease 720ms forwards;
+}
+
+/* 3 — Structural columns rise */
+.construction-build-visible .construction-build-stage-3 path,
+.construction-build-visible .construction-build-stage-3 circle {
+  animation: construction-build-draw 1.2s ease 1.45s forwards;
+}
+
+/* 4 — First floor */
+.construction-build-visible .construction-build-stage-4 path,
+.construction-build-visible .construction-build-stage-4 circle {
+  animation: construction-build-draw 1s ease 2.15s forwards;
+}
+
+/* 5 — Second floor */
+.construction-build-visible .construction-build-stage-5 path,
+.construction-build-visible .construction-build-stage-5 circle {
+  animation: construction-build-draw 1s ease 2.75s forwards;
+}
+
+/* 6 — Third floor */
+.construction-build-visible .construction-build-stage-6 path,
+.construction-build-visible .construction-build-stage-6 circle {
+  animation: construction-build-draw 1s ease 3.35s forwards;
+}
+
+/* 7 — Roof framing */
+.construction-build-visible .construction-build-stage-7 path,
+.construction-build-visible .construction-build-stage-7 circle {
+  animation: construction-build-draw 1.1s ease 3.95s forwards;
+}
+
+/* 8 — Glazing and final building detail */
+.construction-build-visible .construction-build-stage-8 path,
+.construction-build-visible .construction-build-stage-8 circle {
+  animation: construction-build-draw 1.2s ease 4.55s forwards;
+}
+
+/* Gold project route */
+.construction-build-route path {
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: none;
+}
+
+.construction-build-visible .construction-build-route path {
+  animation: construction-build-route 1.25s ease 5.25s forwards;
+}
+
+/* Completion nodes */
+.construction-build-nodes {
+  opacity: 0;
+  transform-origin: center;
+}
+
+.construction-build-visible .construction-build-nodes {
+  animation: construction-build-nodes 650ms ease 6.1s forwards;
+}
+
+/* Central completion marker */
+.construction-build-complete {
+  opacity: 0;
+  transform-origin: 480px 679px;
+}
+
+.construction-build-visible .construction-build-complete {
+  animation: construction-build-complete 1.1s ease 6.45s forwards;
+}
+
+/* Crane becomes background drafting information. */
+.construction-build-visible .construction-build-crane {
+  animation: construction-build-crane-fade 1.2s ease 6.4s forwards;
+}
+
+/* Finished project image starts hidden. */
+.construction-build-finished {
+  opacity: 0;
+  filter: grayscale(1) contrast(0.82) brightness(1.18);
+  transform: scale(0.985);
+  transition:
+    opacity 1.8s ease,
+    filter 2.2s ease,
+    transform 2.2s ease;
+}
+
+/*
+ * The photograph remains understated.
+ * It supports the blueprint instead of replacing it completely.
+ */
+.construction-build-visible .construction-build-finished {
+  animation: construction-finished-reveal 2.3s ease 6.9s forwards;
+}
+
+/* Blueprint completion glow */
+.construction-build-glow {
+  opacity: 0;
+  background: radial-gradient(
+    circle,
+    rgba(73, 109, 139, 0.15) 0%,
+    rgba(197, 154, 61, 0.075) 38%,
+    transparent 72%
+  );
+}
+
+.construction-build-visible .construction-build-glow {
+  animation:
+    construction-glow-arrive 1.5s ease 6.45s forwards,
+    construction-glow-breathe 4.8s ease-in-out 8s infinite;
+}
+
+/* Moving drafting point */
+.construction-drafting-point {
+  left: 48%;
+  top: 72%;
+  opacity: 0;
+}
+
+.construction-build-visible .construction-drafting-point {
+  animation: construction-drafting-point 6.4s linear 520ms forwards;
+}
+
+@keyframes construction-build-draw {
+  from {
+    stroke-dashoffset: 1400;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes construction-build-route {
+  from {
+    stroke-dashoffset: 900;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes construction-build-nodes {
+  from {
+    opacity: 0;
+    transform: scale(0.72);
+  }
+
+  65% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes construction-build-complete {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+
+  55% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes construction-build-crane-fade {
+  from {
+    opacity: 0.42;
+  }
+
+  to {
+    opacity: 0.1;
+  }
+}
+
+@keyframes construction-finished-reveal {
+  0% {
+    opacity: 0;
+    filter: grayscale(1) contrast(0.82) brightness(1.18);
+    transform: scale(0.985);
+  }
+
+  45% {
+    opacity: 0.08;
+  }
+
+  100% {
+    opacity: 0.2;
+    filter: grayscale(0.65) contrast(0.9) brightness(1.08);
+    transform: scale(1);
+  }
+}
+
+@keyframes construction-glow-arrive {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.82);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes construction-glow-breathe {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: translate(-50%, -50%) scale(0.98);
+  }
+
+  50% {
+    opacity: 0.72;
+    transform: translate(-50%, -50%) scale(1.035);
+  }
+}
+
+@keyframes construction-drafting-point {
+  0% {
+    left: 48%;
+    top: 72%;
+    opacity: 0;
+  }
+
+  4% {
+    opacity: 1;
+  }
+
+  14% {
+    left: 39%;
+    top: 68%;
+  }
+
+  25% {
+    left: 41%;
+    top: 49%;
+  }
+
+  37% {
+    left: 47%;
+    top: 38%;
+  }
+
+  49% {
+    left: 52%;
+    top: 29%;
+  }
+
+  61% {
+    left: 58%;
+    top: 38%;
+  }
+
+  73% {
+    left: 60%;
+    top: 53%;
+  }
+
+  86% {
+    left: 54%;
+    top: 67%;
+    opacity: 1;
+  }
+
+  100% {
+    left: 48%;
+    top: 72%;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .construction-build-grid,
+  .construction-build-lines path,
+  .construction-build-lines circle,
+  .construction-build-route path,
+  .construction-build-nodes,
+  .construction-build-complete,
+  .construction-build-crane,
+  .construction-build-finished,
+  .construction-build-glow,
+  .construction-drafting-point {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .construction-build-grid,
+  .construction-build-nodes,
+  .construction-build-complete,
+  .construction-build-glow {
+    opacity: 1 !important;
+  }
+
+  .construction-build-lines path,
+  .construction-build-lines circle,
+  .construction-build-route path {
+    stroke-dashoffset: 0 !important;
+  }
+
+  .construction-build-finished {
+    opacity: 0.16 !important;
+    filter: grayscale(0.7) contrast(0.9) brightness(1.08) !important;
+    transform: none !important;
+  }
+
+  .construction-drafting-point {
+    display: none !important;
+  }
+}
+
+/*
+@media (prefers-reduced-motion: reduce) {
+  .construction-build-grid,
+  .construction-build-lines path,
+  .construction-build-lines circle,
+  .construction-build-route path,
+  .construction-build-nodes,
+  .construction-build-complete,
+  .construction-build-crane {
+    animation: none !important;
+    opacity: 1 !important;
+    stroke-dashoffset: 0 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+*/

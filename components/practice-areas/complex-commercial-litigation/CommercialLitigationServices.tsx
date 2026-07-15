@@ -57,12 +57,12 @@ export default function CommercialLitigationServices() {
           {services.map((service, index) => (
             <article
               key={service.title}
-              className="commercial-service-card rounded-[5px] border border-[var(--border)] bg-white p-7 shadow-[var(--shadow-soft)]"
+              className="commercial-service-card group rounded-[5px] border border-[var(--border)] bg-white p-7 shadow-[var(--shadow-soft)]"
               style={{
                 animationDelay: `${index * 120}ms`,
               }}
             >
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--aronson-navy)] text-white">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--aronson-navy)] text-white transition-all duration-300 group-hover:bg-[var(--aronson-garnet)] group-hover:shadow-[0_8px_20px_rgba(122,20,35,0.24)]">
                 <span className="serif text-2xl">{index + 1}</span>
               </div>
 

@@ -15,7 +15,7 @@ export default function PrimaryButton({
   return (
     <Link
       href={href}
-      className={`inline-flex min-h-14 items-center justify-center rounded-sm bg-[var(--aronson-garnet)] px-8 py-4 text-base font-bold uppercase tracking-[0.12em] !text-white no-underline transition-all duration-300 hover:bg-[#7a1c29] hover:!text-white hover:shadow-lg ${className}`}
+      className={`inline-flex min-h-14 items-center justify-center rounded-sm bg-[var(--aronson-garnet)] px-12 py-5 text-base font-bold uppercase tracking-[0.12em] !text-white no-underline transition-all duration-300 hover:bg-[#7a1c29] hover:!text-white hover:shadow-lg ${className}`}
     >
       {children}
     </Link>

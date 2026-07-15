@@ -63,12 +63,13 @@ to-[rgba(7,13,19,0.25)]"
               Schedule a Consultation
             </PrimaryButton>
 
-            <a
-              href="/contact"
-              className="inline-flex min-h-12 items-center justify-center rounded-[3px] border border-[var(--chesapeake-gold)] bg-[rgba(7,23,38,0.36)] px-7 text-sm font-extrabold uppercase tracking-[0.025em] text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[rgba(197,154,61,0.16)]"
-            >
-              Contact Us
-            </a>
+           <a
+  href="/contact"
+  style={{ color: "#ffffff" }}
+  className="inline-flex min-h-[56px] items-center justify-center rounded-[2px] border border-[var(--chesapeake-gold)] bg-[rgba(4,18,31,0.82)] px-8 py-4 text-sm font-bold uppercase tracking-[0.08em] shadow-[0_10px_24px_rgba(4,18,31,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:!bg-[var(--chesapeake-gold)] hover:!text-[var(--aronson-navy)] hover:shadow-[0_14px_30px_rgba(4,18,31,0.3)]"
+>
+  Contact Us
+</a>
           </div>
         </div>
       </Container>

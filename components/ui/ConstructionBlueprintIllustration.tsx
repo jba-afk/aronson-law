@@ -6,167 +6,343 @@ export default function ConstructionBlueprintIllustration() {
   const illustrationRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
-    const element = illustrationRef.current;
+useEffect(() => {
+  const element = illustrationRef.current;
 
-    if (!element) {
-      return;
-    }
+  if (!element) {
+    return;
+  }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      {
-        threshold: 0.3,
-        rootMargin: "0px 0px -15% 0px",
-      },
-    );
+  let frameOne = 0;
+  let frameTwo = 0;
 
-    observer.observe(element);
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        /*
+         * First remove the visible class and allow the browser
+         * to paint the hidden starting state.
+         */
+        setIsVisible(false);
 
-    return () => observer.disconnect();
-  }, []);
+        frameOne = window.requestAnimationFrame(() => {
+          frameTwo = window.requestAnimationFrame(() => {
+            setIsVisible(true);
+          });
+        });
+      } else {
+        /*
+         * Reset the illustration after it leaves the viewport
+         * so it will replay the next time it enters.
+         */
+        setIsVisible(false);
+      }
+    },
+    {
+      threshold: 0.35,
+      rootMargin: "0px 0px -12% 0px",
+    },
+  );
+
+  observer.observe(element);
+
+  return () => {
+    observer.disconnect();
+    window.cancelAnimationFrame(frameOne);
+    window.cancelAnimationFrame(frameTwo);
+  };
+}, []);
 
   return (
     <div
       ref={illustrationRef}
       aria-hidden="true"
-      className={`blueprint-illustration absolute inset-0 flex items-center justify-center overflow-hidden ${
-        isVisible ? "blueprint-visible" : ""
+      className={`construction-build-illustration absolute inset-0 flex items-center justify-center overflow-hidden ${
+        isVisible ? "construction-build-visible" : ""
       }`}
     >
+      {/* Drafting grid */}
       <div
-        className="blueprint-grid absolute inset-0 opacity-0"
+        className="construction-build-grid absolute inset-0"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(35, 82, 125, 0.14) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(35, 82, 125, 0.14) 1px, transparent 1px),
-            linear-gradient(rgba(35, 82, 125, 0.055) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(35, 82, 125, 0.055) 1px, transparent 1px)
+            linear-gradient(rgba(43, 78, 108, 0.075) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(43, 78, 108, 0.075) 1px, transparent 1px)
           `,
-          backgroundSize: "36px 36px, 36px 36px, 9px 9px, 9px 9px",
+          backgroundSize: "32px 32px",
         }}
       />
 
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_52%_46%,rgba(255,255,255,0.72),transparent_65%)]" />
+      {/* Architectural glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(197,154,61,0.12),transparent_58%)]" />
 
       <svg
-        viewBox="0 0 960 680"
-        className="relative z-10 h-auto w-[112%] max-w-none text-[#315f88] lg:w-[118%]"
+        viewBox="0 0 960 720"
+        className="relative z-[10] h-auto w-[112%] max-w-none text-[#37536c] lg:w-[118%]"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g className="blueprint-lines blueprint-stage-1" stroke="currentColor" strokeWidth="1.55" strokeLinecap="round" strokeLinejoin="round" opacity="0.65">
-          <path d="M92 555L455 638L866 500L496 425L92 555Z" />
-          <path d="M151 542L456 612L810 495" />
-          <path d="M211 526L461 585L752 489" />
-          <path d="M246 472L463 526L704 448L487 399L246 472Z" />
-          <path d="M246 472V494L463 548V526" />
-          <path d="M463 526V548L704 470V448" />
-          <path d="M273 463L463 510L674 442" />
-          <path d="M304 455L464 494L643 437" />
+        {/* Site and perspective lines */}
+        <g
+          className="construction-build-lines construction-build-stage-1"
+          stroke="currentColor"
+          strokeWidth="1.25"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          opacity="0.3"
+        >
+          <path d="M102 604H858" />
+          <path d="M156 634H804" />
+          <path d="M215 661H745" />
+
+          <path d="M480 604L230 690" />
+          <path d="M480 604L730 690" />
+
+          <path d="M480 604L126 650" />
+          <path d="M480 604L834 650" />
+
+          <path d="M178 170H335" />
+          <path d="M178 188H296" />
+          <path d="M650 172H806" />
+          <path d="M690 190H806" />
         </g>
 
-        <g className="blueprint-lines blueprint-stage-2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.82">
-          {[274,337,400,463].map((x, i) => <path key={`front-${x}`} d={`M${x} ${466 + i*16}V${244 + i*15}`} />)}
-          <path d="M523 494V268" />
-          <path d="M584 474V248" />
-          <path d="M645 454V228" />
-          <path d="M705 434V209" />
+        {/* Foundation */}
+        <g
+          className="construction-build-lines construction-build-stage-2"
+          stroke="currentColor"
+          strokeWidth="1.75"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          opacity="0.75"
+        >
+          <path d="M260 585L480 515L700 585L480 655Z" />
+          <path d="M294 575L480 520L666 575L480 635Z" />
+          <path d="M326 565L480 525L634 565L480 616Z" />
+
+          <path d="M260 585V608L480 679L700 608V585" />
+          <path d="M480 655V679" />
         </g>
 
-        <g className="blueprint-lines blueprint-stage-3" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" opacity="0.76">
-          <path d="M274 389L463 437L705 358L523 317L274 389Z" />
-          <path d="M274 389L274 402L463 450L463 437" />
-          <path d="M463 437L463 450L705 371L705 358" />
-          <path d="M274 311L463 359L705 280L523 239L274 311Z" />
-          <path d="M274 311L274 324L463 372L463 359" />
-          <path d="M463 359L463 372L705 293L705 280" />
-          <path d="M337 405L584 326" />
-          <path d="M400 421L645 342" />
-          <path d="M337 327L584 248" />
-          <path d="M400 343L645 264" />
+        {/* Structural columns */}
+        <g
+          className="construction-build-lines construction-build-stage-3"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          opacity="0.85"
+        >
+          <path d="M326 565V288" />
+          <path d="M403 542V264" />
+          <path d="M480 520V242" />
+          <path d="M557 542V264" />
+          <path d="M634 565V288" />
+
+          <path d="M372 580V320" />
+          <path d="M449 557V296" />
+          <path d="M526 557V296" />
+          <path d="M603 580V320" />
         </g>
 
-        <g className="blueprint-lines blueprint-stage-4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" opacity="0.72">
-          <path d="M274 244L463 289L705 209L523 170L274 244Z" />
-          <path d="M274 244L367 187L523 170" />
-          <path d="M463 289L556 229L705 209" />
-          <path d="M367 187L556 229" />
-          <path d="M405 181L594 221" />
-          <path d="M443 176L632 215" />
-          <path d="M481 172L670 208" />
-          <path d="M319 230L508 273" />
-          <path d="M365 215L554 257" />
-          <path d="M411 200L600 241" />
-          <path d="M457 185L646 225" />
+        {/* First-floor framing */}
+        <g
+          className="construction-build-lines construction-build-stage-4"
+          stroke="currentColor"
+          strokeWidth="1.9"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          opacity="0.82"
+        >
+          <path d="M326 487L480 446L634 487L480 538Z" />
+          <path d="M372 502L526 461" />
+          <path d="M449 522L603 481" />
+
+          <path d="M326 487L480 538" />
+          <path d="M403 466L557 516" />
+          <path d="M480 446L634 487" />
         </g>
 
-        <g className="blueprint-lines blueprint-stage-4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" opacity="0.58">
-          <path d="M274 311L337 405" />
-          <path d="M337 327L274 389" />
-          <path d="M400 343L463 437" />
-          <path d="M463 359L400 421" />
-          <path d="M584 248L645 342" />
-          <path d="M645 264L584 326" />
-          <path d="M645 228L705 358" />
-          <path d="M705 280L645 342" />
+        {/* Second-floor framing */}
+        <g
+          className="construction-build-lines construction-build-stage-5"
+          stroke="currentColor"
+          strokeWidth="1.9"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          opacity="0.82"
+        >
+          <path d="M326 407L480 366L634 407L480 458Z" />
+          <path d="M372 422L526 381" />
+          <path d="M449 442L603 401" />
+
+          <path d="M326 407L480 458" />
+          <path d="M403 386L557 436" />
+          <path d="M480 366L634 407" />
         </g>
 
-        <g className="blueprint-lines blueprint-stage-5" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round" strokeLinejoin="round" opacity="0.52">
-          <path d="M774 449V142" />
-          <path d="M759 449H789" />
-          <path d="M765 449L774 142L783 449" />
-          <path d="M774 142H888" />
-          <path d="M774 142L840 112L888 142" />
-          <path d="M774 142L720 157" />
-          <path d="M805 142V305" />
-          <path d="M800 305H810" />
-          <path d="M803 305V326" />
-          <path d="M807 305V326" />
-          <path d="M801 326H809" />
+        {/* Third-floor framing */}
+        <g
+          className="construction-build-lines construction-build-stage-6"
+          stroke="currentColor"
+          strokeWidth="1.9"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          opacity="0.82"
+        >
+          <path d="M326 327L480 286L634 327L480 378Z" />
+          <path d="M372 342L526 301" />
+          <path d="M449 362L603 321" />
+
+          <path d="M326 327L480 378" />
+          <path d="M403 306L557 356" />
+          <path d="M480 286L634 327" />
         </g>
 
-        <g className="blueprint-lines blueprint-stage-6" stroke="currentColor" strokeWidth="1.15" strokeLinecap="round" strokeLinejoin="round" opacity="0.5">
-          <path d="M248 585H708" />
-          <path d="M248 574V596" />
-          <path d="M708 574V596" />
-          <path d="M739 210V514" />
-          <path d="M728 210H750" />
-          <path d="M728 514H750" />
-          <path d="M274 122V528" strokeDasharray="7 7" />
-          <path d="M463 104V555" strokeDasharray="7 7" />
-          <path d="M705 116V488" strokeDasharray="7 7" />
-          <path d="M148 181H259" />
-          <path d="M148 197H224" />
-          <path d="M148 213H238" />
-          <path d="M641 91H820" />
-          <path d="M681 107H820" />
+        {/* Roof framing */}
+        <g
+          className="construction-build-lines construction-build-stage-7"
+          stroke="var(--aronson-garnet)"
+          strokeWidth="2.25"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          opacity="0.88"
+        >
+          <path d="M326 288L480 242L634 288" />
+          <path d="M326 288L480 338L634 288" />
+
+          <path d="M372 274L526 324" />
+          <path d="M418 260L572 310" />
+          <path d="M464 246L618 296" />
+
+          <path d="M372 274L526 228" />
+          <path d="M418 288L572 242" />
         </g>
 
-        <g className="blueprint-details" stroke="currentColor" strokeWidth="1.55" strokeLinecap="round" strokeLinejoin="round" opacity="0.82">
-          <circle cx="274" cy="311" r="7" />
-          <circle cx="463" cy="359" r="7" />
-          <circle cx="705" cy="280" r="7" />
-          <circle cx="274" cy="389" r="7" />
-          <circle cx="463" cy="437" r="7" />
-          <circle cx="705" cy="358" r="7" />
+        {/* Exterior glazing */}
+        <g
+          className="construction-build-lines construction-build-stage-8"
+          stroke="currentColor"
+          strokeWidth="1.25"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          opacity="0.42"
+        >
+          <path d="M326 327V565" />
+          <path d="M403 306V542" />
+          <path d="M480 286V520" />
+          <path d="M557 306V542" />
+          <path d="M634 327V565" />
+
+          <path d="M326 367L480 418L634 367" />
+          <path d="M326 447L480 498L634 447" />
+          <path d="M326 527L480 578L634 527" />
+
+          <path d="M365 340V578" />
+          <path d="M442 318V553" />
+          <path d="M518 318V553" />
+          <path d="M595 340V578" />
         </g>
 
-        <g className="blueprint-lines blueprint-stage-6" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" opacity="0.9">
-          <path d="M274 466V244L523 170L705 209V434L463 514L274 466Z" />
-          <path d="M274 244L463 289L705 209" />
-          <path d="M463 289V514" />
-          <path d="M274 311L463 359L705 280" />
-          <path d="M274 389L463 437L705 358" />
+        {/* Crane */}
+        <g
+          className="construction-build-lines construction-build-stage-4 construction-build-crane"
+          stroke="currentColor"
+          strokeWidth="1.45"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          opacity="0.42"
+        >
+          <path d="M735 205V560" />
+          <path d="M710 560H760" />
+          <path d="M735 205L680 238" />
+          <path d="M735 205L828 238" />
+          <path d="M692 238H828" />
+          <path d="M778 238V382" />
+          <path d="M768 382H788" />
+          <path d="M778 382L767 401" />
+          <path d="M778 382L789 401" />
+        </g>
+
+        {/* Construction route */}
+        <g
+          className="construction-build-route"
+          stroke="var(--chesapeake-gold)"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          opacity="0.92"
+        >
+          <path d="M260 608C340 653 417 674 480 679" />
+          <path d="M480 679C548 671 622 650 700 608" />
+        </g>
+
+        {/* Completion nodes */}
+        <g className="construction-build-nodes">
+          <circle
+            cx="260"
+            cy="608"
+            r="10"
+            fill="white"
+            stroke="var(--chesapeake-gold)"
+            strokeWidth="2"
+          />
+          <circle
+            cx="480"
+            cy="679"
+            r="12"
+            fill="white"
+            stroke="var(--chesapeake-gold)"
+            strokeWidth="2"
+          />
+          <circle
+            cx="700"
+            cy="608"
+            r="10"
+            fill="white"
+            stroke="var(--chesapeake-gold)"
+            strokeWidth="2"
+          />
+        </g>
+
+        {/* Completed-building emphasis */}
+        <g className="construction-build-complete">
+          <circle
+            cx="480"
+            cy="679"
+            r="25"
+            fill="rgba(197,154,61,0.1)"
+            stroke="rgba(197,154,61,0.48)"
+            strokeWidth="1.5"
+          />
+          <circle
+            cx="480"
+            cy="679"
+            r="6"
+            fill="rgba(197,154,61,0.82)"
+          />
         </g>
       </svg>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent" />
+{/* Finished-building reveal */}
+<div
+  className="construction-build-finished pointer-events-none absolute inset-[8%] z-[5] overflow-hidden rounded-[4px]"
+  style={{
+    backgroundImage: "url('/hero/construction-hero.jpg')",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+  }}
+>
+  <div className="absolute inset-0 bg-white/30" />
+</div>
+
+{/* Subtle completed-blueprint glow */}
+<div className="construction-build-glow pointer-events-none absolute left-1/2 top-1/2 z-[7] h-[58%] w-[52%] -translate-x-1/2 -translate-y-1/2 rounded-full" />
+
+{/* Drafting-point animation */}
+<div className="construction-drafting-point pointer-events-none absolute z-20 h-3 w-3 rounded-full border border-[var(--chesapeake-gold)] bg-white shadow-[0_0_14px_rgba(197,154,61,0.7)]" />
+
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white to-transparent" />
     </div>
   );
 }

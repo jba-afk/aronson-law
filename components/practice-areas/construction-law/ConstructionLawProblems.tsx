@@ -13,12 +13,12 @@ const problems = [
     description:
       "We assess the governing contract, available remedies, project documentation, and the practical next steps needed to protect your interests.",
   },
-  {
-    number: "03",
-    title: "We Are Renegotiating a Major Construction Contract",
-    description:
-      "Careful contract drafting and negotiation can allocate risk clearly, prevent misunderstandings, and reduce the likelihood of expensive disputes.",
-  },
+    {
+  number: "03",
+  title: "A Major Contract Needs Renegotiation",
+  description:
+    "Careful contract drafting and negotiation can allocate risk clearly, prevent misunderstandings, and reduce the likelihood of expensive disputes.",
+},
   {
     number: "04",
     title: "The Project Has Gone Sideways",
@@ -36,7 +36,7 @@ export default function ConstructionLawProblems() {
             When Problems Arise
           </p>
 
-          <h2 className="mt-4 serif text-[clamp(3rem,4vw,4.5rem)] leading-tight text-[var(--aronson-navy)]">
+          <h2 className="mt-4 serif text-[clamp(2.75rem,3.6vw,4rem)] leading-[1.08] text-[var(--aronson-navy)]">
             Common Construction Problems We Help Solve
           </h2>
 
