@@ -1,4 +1,13 @@
+"use client";
+
+import { motion, useInView, useReducedMotion } from "motion/react";
+import { useRef } from "react";
+
 export default function MitchStory() {
+  const illustrationRef = useRef<HTMLDivElement | null>(null);
+  const isInView = useInView(illustrationRef, { once: true, amount: 0.35 });
+  const reduceMotion = useReducedMotion();
+
   return (
     <section className="overflow-hidden bg-[#fbfaf7] text-[#111827]">
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 items-center gap-12 px-6 py-16 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:px-12 lg:py-20 xl:px-16">
@@ -26,7 +35,22 @@ export default function MitchStory() {
           </p>
         </div>
 
-        <div className="relative min-h-[360px]" aria-label="Eastern Shore waterfront illustration">
+        <motion.div
+          ref={illustrationRef}
+          className="relative min-h-[360px]"
+          aria-label="Eastern Shore waterfront illustration"
+          initial={{ opacity: 0, clipPath: reduceMotion ? "inset(0 0 0 0)" : "inset(0 100% 0 0)" }}
+          animate={{
+            opacity: isInView ? 1 : 0,
+            clipPath: isInView ? "inset(0 0 0 0)" : reduceMotion ? "inset(0 0 0 0)" : "inset(0 100% 0 0)",
+            y: reduceMotion ? 0 : isInView ? [0, -3, 0, 3, 0] : 0,
+          }}
+          transition={{
+            opacity: { duration: reduceMotion ? 0 : 0.7 },
+            clipPath: { duration: reduceMotion ? 0 : 3.2, ease: [0.22, 1, 0.36, 1] },
+            y: { duration: 8, repeat: reduceMotion ? 0 : Infinity, ease: "easeInOut", delay: 3.2 },
+          }}
+        >
           <svg viewBox="0 0 760 430" role="img" className="h-full w-full text-[#43536a]" fill="none">
             <title>Eastern Shore homes and sailboats along the waterfront</title>
             <g opacity=".16" stroke="currentColor" strokeWidth="1">
@@ -55,7 +79,7 @@ export default function MitchStory() {
             </g>
           </svg>
           <div className="absolute inset-x-[8%] bottom-5 h-14 rounded-[50%] bg-[#d9cbb7]/25 blur-2xl" />
-        </div>
+        </motion.div>
       </div>
     </section>
   );
