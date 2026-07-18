@@ -30,11 +30,11 @@ export default function MitchCTA() {
             or business, Aronson Law is here to help.
           </p>
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-            <Link href="/contact" className="inline-flex min-h-14 items-center justify-center bg-[var(--aronson-garnet)] px-8 py-4 text-center text-sm font-bold uppercase tracking-[0.07em] text-white shadow-[0_14px_34px_rgba(0,0,0,0.28)] transition duration-300 hover:-translate-y-1 hover:bg-[#941d2e] hover:shadow-[0_18px_44px_rgba(0,0,0,0.36)]">
+            <Link href="/contact" className="inline-flex min-h-14 items-center justify-center bg-[var(--aronson-garnet)] px-8 py-4 text-center text-sm font-bold uppercase tracking-[0.07em] text-white shadow-[0_14px_34px_rgba(0,0,0,0.28)] transition duration-300 hover:-translate-y-1 hover:bg-[#941d2e] hover:shadow-[0_18px_44px_rgba(0,0,0,0.36)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0b34f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#071726]">
               Schedule a Consultation
               <span aria-hidden="true" className="ml-3">→</span>
             </Link>
-            <a href="tel:+14108225240" className="inline-flex min-h-14 items-center justify-center border border-[#d3a13a] bg-black/20 px-8 py-4 text-center text-sm font-bold uppercase tracking-[0.07em] text-white backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:bg-[#d3a13a] hover:text-[#071726]">
+            <a href="tel:+14108225240" className="inline-flex min-h-14 items-center justify-center border border-[#d3a13a] bg-black/20 px-8 py-4 text-center text-sm font-bold uppercase tracking-[0.07em] text-white backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:bg-[#d3a13a] hover:text-[#071726] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0b34f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#071726]">
               Call (410) 822-5240
             </a>
           </div>
