@@ -1,11 +1,8 @@
 "use client";
 
-import { motion, useInView, useReducedMotion } from "motion/react";
-import { useRef } from "react";
+import { motion, useReducedMotion } from "motion/react";
 
 export default function MitchStory() {
-  const illustrationRef = useRef<HTMLDivElement | null>(null);
-  const isInView = useInView(illustrationRef, { once: true, amount: 0.35 });
   const reduceMotion = useReducedMotion();
 
   return (
@@ -36,19 +33,18 @@ export default function MitchStory() {
         </div>
 
         <motion.div
-          ref={illustrationRef}
           className="relative min-h-[360px]"
           aria-label="Eastern Shore waterfront illustration"
           initial={{ opacity: 0, clipPath: reduceMotion ? "inset(0 0 0 0)" : "inset(0 100% 0 0)" }}
-          animate={{
-            opacity: isInView ? 1 : 0,
-            clipPath: isInView ? "inset(0 0 0 0)" : reduceMotion ? "inset(0 0 0 0)" : "inset(0 100% 0 0)",
-            y: reduceMotion ? 0 : isInView ? [0, -3, 0, 3, 0] : 0,
+          whileInView={{
+            opacity: 1,
+            clipPath: "inset(0 0 0 0)",
+            y: 0,
           }}
+          viewport={{ once: false, amount: 0.25 }}
           transition={{
             opacity: { duration: reduceMotion ? 0 : 0.7 },
             clipPath: { duration: reduceMotion ? 0 : 3.2, ease: [0.22, 1, 0.36, 1] },
-            y: { duration: 8, repeat: reduceMotion ? 0 : Infinity, ease: "easeInOut", delay: 3.2 },
           }}
         >
           <svg viewBox="0 0 760 430" role="img" className="h-full w-full text-[#43536a]" fill="none">
