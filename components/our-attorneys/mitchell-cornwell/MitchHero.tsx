@@ -100,10 +100,10 @@ export default function MitchHero() {
             </div>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <Link href="/contact" className="inline-flex min-h-12 items-center justify-center bg-[var(--aronson-garnet)] px-7 py-3 text-center text-xs font-bold uppercase tracking-[0.04em] text-white shadow-lg transition duration-200 hover:-translate-y-0.5 hover:bg-[#941d2e]">
+              <Link href="/contact" className="inline-flex min-h-12 items-center justify-center bg-[var(--aronson-garnet)] px-7 py-3 text-center text-sm font-bold uppercase tracking-[0.04em] text-white shadow-lg transition duration-200 hover:-translate-y-0.5 hover:bg-[#941d2e] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0b34f] focus-visible:ring-offset-2 focus-visible:ring-offset-black">
                 Schedule a Consultation
               </Link>
-              <Link href="/practice-areas/trusts-estates" className="inline-flex min-h-12 items-center justify-center border border-[#d3a13a] bg-black/25 px-7 py-3 text-center text-xs font-bold uppercase tracking-[0.04em] text-white backdrop-blur-sm transition duration-200 hover:-translate-y-0.5 hover:bg-[#d3a13a] hover:text-[#06101f]">
+              <Link href="/practice-areas/trusts-estates" className="inline-flex min-h-12 items-center justify-center border border-[#d3a13a] bg-black/25 px-7 py-3 text-center text-sm font-bold uppercase tracking-[0.04em] text-white backdrop-blur-sm transition duration-200 hover:-translate-y-0.5 hover:bg-[#d3a13a] hover:text-[#06101f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0b34f] focus-visible:ring-offset-2 focus-visible:ring-offset-black">
                 Explore Trusts &amp; Estates
               </Link>
             </div>
