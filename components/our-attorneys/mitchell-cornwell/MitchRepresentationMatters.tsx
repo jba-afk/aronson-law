@@ -45,13 +45,13 @@ export default function MitchRepresentationMatters() {
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:self-center">
           {attorneys.map((attorney) => (
             <Link key={attorney.name} href={attorney.href} className="group overflow-hidden border border-[#dfd5c8] bg-white shadow-[0_12px_32px_rgba(7,23,38,0.07)] transition duration-300 hover:-translate-y-1 hover:border-[#d3a13a]/70 hover:shadow-[0_18px_42px_rgba(7,23,38,0.12)]">
-              <div className="relative aspect-[4/4.5] overflow-hidden bg-[#eee7de]">
+              <div className="relative aspect-[4/5.5] overflow-hidden bg-[#eee7de]">
                 <Image src={attorney.image} alt={attorney.name} fill sizes="(max-width: 1023px) 45vw, 16vw" className={`object-cover transition duration-500 group-hover:scale-[1.025] ${attorney.position}`} />
               </div>
-              <div className="px-4 py-5 text-center">
+              <div className="flex min-h-[210px] flex-col justify-center px-5 py-7 text-center">
                 <h3 className="serif text-xl font-bold text-[var(--aronson-navy)]">{attorney.name}</h3>
                 <p className="mt-1 text-sm font-bold text-[#3a414b]">{attorney.role}</p>
-                <p className="mt-2 text-[15px] leading-6 text-[#555e69]">{attorney.focus}</p>
+                <p className="mt-2 text-base leading-7 text-[#555e69]">{attorney.focus}</p>
               </div>
             </Link>
           ))}
