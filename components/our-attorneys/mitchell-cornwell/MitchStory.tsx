@@ -1,10 +1,4 @@
-"use client";
-
-import { motion, useReducedMotion } from "motion/react";
-
 export default function MitchStory() {
-  const reduceMotion = useReducedMotion();
-
   return (
     <section className="overflow-hidden bg-[#fbfaf7] text-[#111827]">
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 items-center gap-12 px-6 py-16 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:px-12 lg:py-20 xl:px-16">
@@ -32,21 +26,7 @@ export default function MitchStory() {
           </p>
         </div>
 
-        <motion.div
-          className="relative min-h-[360px]"
-          aria-label="Eastern Shore waterfront illustration"
-          initial={{ opacity: 0, clipPath: reduceMotion ? "inset(0 0 0 0)" : "inset(0 100% 0 0)" }}
-          whileInView={{
-            opacity: 1,
-            clipPath: "inset(0 0 0 0)",
-            y: 0,
-          }}
-          viewport={{ once: false, amount: 0.25 }}
-          transition={{
-            opacity: { duration: reduceMotion ? 0 : 0.7 },
-            clipPath: { duration: reduceMotion ? 0 : 3.2, ease: [0.22, 1, 0.36, 1] },
-          }}
-        >
+        <div className="relative min-h-[360px]" aria-label="Eastern Shore waterfront illustration">
           <svg viewBox="0 0 760 430" role="img" className="h-full w-full text-[#43536a]" fill="none">
             <title>Eastern Shore homes and sailboats along the waterfront</title>
             <g opacity=".16" stroke="currentColor" strokeWidth="1">
@@ -63,9 +43,17 @@ export default function MitchStory() {
               <path d="M468 271V190h97v81M478 190l39-42 42 42M501 216h31v55M477 216h17v22M540 216h17v22" />
               <path d="M570 271V205h76v66M580 205l28-32 30 32M590 224h17v20M620 224h17v20" />
               <path d="M653 271v-54h61v54M661 217l23-25 23 25M675 230h18v41" />
-              <path d="M242 316 274 205l3 111M274 205l70 94h-70M274 226l-54 73h54M214 316h142M226 316c18 22 91 23 116 0" />
-              <path d="M112 322 139 243l2 79M139 243l47 65h-47M139 262l-34 46h34M99 322h95M108 322c16 17 57 18 76 0" />
-              <path d="M0 330h760" opacity=".7" />
+              <g>
+                <animateTransform attributeName="transform" type="translate" values="0 0;0 -5;0 0;0 4;0 0" dur="7s" repeatCount="indefinite" />
+                <path d="M242 316 274 205l3 111M274 205l70 94h-70M274 226l-54 73h54M214 316h142M226 316c18 22 91 23 116 0" />
+              </g>
+              <g>
+                <animateTransform attributeName="transform" type="translate" values="0 0;0 3;0 0;0 -4;0 0" dur="6s" repeatCount="indefinite" />
+                <path d="M112 322 139 243l2 79M139 243l47 65h-47M139 262l-34 46h34M99 322h95M108 322c16 17 57 18 76 0" />
+              </g>
+              <path d="M0 330h760" opacity=".7" strokeDasharray="12 14">
+                <animate attributeName="stroke-dashoffset" values="0;-52" dur="5s" repeatCount="indefinite" />
+              </path>
               <path d="M384 180c10-18 29-20 43-5M407 173c12-19 32-18 45-2M681 170c9-15 24-16 36-4" opacity=".45" />
             </g>
             <g fill="currentColor" opacity=".2">
@@ -75,7 +63,7 @@ export default function MitchStory() {
             </g>
           </svg>
           <div className="absolute inset-x-[8%] bottom-5 h-14 rounded-[50%] bg-[#d9cbb7]/25 blur-2xl" />
-        </motion.div>
+        </div>
       </div>
     </section>
   );
