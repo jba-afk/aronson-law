@@ -11,7 +11,7 @@ const attorneys = [
   },
   {
     label: "Mitch Cornwell",
-    href: "/our-attorneys/mitch-cornwell",
+    href: "/our-attorneys/mitchell-cornwell",
   },
 ];
 
