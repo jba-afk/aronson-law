@@ -41,7 +41,7 @@ const details = [
   {
     icon: "clock" as const,
     title: "Consultations",
-    content: <>Available by appointment<br />In person or by telephone</>,
+    content: <>Available by appointment<br />In person, by telephone, or via Zoom</>,
   },
 ];
 
