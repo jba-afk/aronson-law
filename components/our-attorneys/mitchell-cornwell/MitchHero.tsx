@@ -68,8 +68,8 @@ export default function MitchHero() {
           className="object-cover object-[68%_center]"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/72 to-black/5" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/15" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.96)_0%,rgba(0,0,0,0.84)_34%,rgba(0,0,0,0.38)_54%,rgba(0,0,0,0.04)_72%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(0,0,0,0.24)_0%,transparent_42%)]" />
 
         <div className="relative z-10 mx-auto flex min-h-[720px] max-w-[1440px] items-center px-6 py-16 sm:px-8 lg:px-12 xl:px-16">
           <div className="max-w-[570px] lg:w-[48%]">
@@ -85,7 +85,7 @@ export default function MitchHero() {
             </p>
             <div className="mt-5 h-0.5 w-14 bg-[#d3a13a]" />
 
-            <div className="mt-5 max-w-[520px] space-y-4 text-[15px] leading-6 text-white/90 sm:text-base sm:leading-7">
+            <div className="mt-5 max-w-[520px] space-y-4 text-[17px] leading-7 text-white/92 sm:text-lg sm:leading-8">
               <p>
                 For more than four decades, Mitch Cornwell has helped individuals,
                 families, business owners, and fiduciaries navigate estate planning,
@@ -116,7 +116,7 @@ export default function MitchHero() {
           {credentials.map((credential, index) => (
             <div key={credential.label} className={`flex min-h-28 items-center gap-4 py-6 sm:px-6 ${index > 0 ? "sm:border-l sm:border-[#ded5c9]" : ""}`}>
               <span className="shrink-0 text-[#071726]"><CredentialIcon type={credential.icon} /></span>
-              <p className="serif text-base leading-5 text-[#111827]">{credential.label}</p>
+              <p className="serif text-[17px] leading-6 text-[#111827]">{credential.label}</p>
             </div>
           ))}
         </div>
