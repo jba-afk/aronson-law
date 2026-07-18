@@ -7,11 +7,11 @@ import Link from "next/link";
 const attorneys = [
   {
     label: "Justin Aronson",
-    href: "/attorneys/justin-aronson",
+    href: "/our-attorneys/justin-aronson",
   },
   {
     label: "Mitch Cornwell",
-    href: "/attorneys/mitch-cornwell",
+    href: "/our-attorneys/mitch-cornwell",
   },
 ];
 
