@@ -12,40 +12,62 @@ const matterTypes = [
   "Other",
 ];
 
+type FormStatus = { type: "idle" | "success" | "error"; message: string };
+
 export default function ContactForm() {
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState<FormStatus>({ type: "idle", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    const name = String(form.get("name") || "").trim();
-    const email = String(form.get("email") || "").trim();
-    const phone = String(form.get("phone") || "").trim();
-    const preferred = String(form.get("preferred") || "").trim();
-    const matter = String(form.get("matter") || "").trim();
-    const message = String(form.get("message") || "").trim();
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
+    const payload = {
+      name: String(form.get("name") || "").trim(),
+      email: String(form.get("email") || "").trim(),
+      phone: String(form.get("phone") || "").trim(),
+      preferred: String(form.get("preferred") || "").trim(),
+      matter: String(form.get("matter") || "").trim(),
+      message: String(form.get("message") || "").trim(),
+      website: String(form.get("website") || "").trim(),
+    };
 
-    if (!name || !email || !matter || !message) {
-      setStatus("Please complete each required field.");
+    if (!payload.name || !payload.email || !payload.matter || !payload.message) {
+      setStatus({ type: "error", message: "Please complete each required field." });
       return;
     }
 
-    const subject = encodeURIComponent(`Consultation request — ${matter} — ${name}`);
-    const body = encodeURIComponent(
-      [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Phone: ${phone || "Not provided"}`,
-        `Preferred contact method: ${preferred || "Not specified"}`,
-        `Matter type: ${matter}`,
-        "",
-        "Brief description:",
-        message,
-      ].join("\n"),
-    );
+    setIsSubmitting(true);
+    setStatus({ type: "idle", message: "" });
 
-    setStatus("Your email application is opening with a prepared message.");
-    window.location.href = `mailto:jba@aronsonlaw.com?subject=${subject}&body=${body}`;
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Your inquiry could not be sent.");
+      }
+
+      formElement.reset();
+      setStatus({
+        type: "success",
+        message: "Thank you. Your inquiry has been sent to Aronson Law, and a confirmation email is on its way.",
+      });
+    } catch (error) {
+      setStatus({
+        type: "error",
+        message:
+          error instanceof Error
+            ? error.message
+            : "We could not send your inquiry. Please call (410) 822-5240.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   const inputClass =
@@ -57,21 +79,21 @@ export default function ContactForm() {
         <p className="text-sm font-bold uppercase tracking-[0.24em] text-[#b77b13]">Request a Consultation</p>
         <h2 className="serif mt-3 text-4xl leading-tight text-[var(--aronson-navy)] sm:text-5xl">Tell Us How We Can Help</h2>
         <div className="mt-4 h-0.5 w-16 bg-[#d3a13a]" />
-        <p className="mt-6 text-[17px] leading-8 text-[#4c5561]">Complete the form below and your email application will open with a prepared message to Aronson Law.</p>
+        <p className="mt-6 text-[17px] leading-8 text-[#4c5561]">Complete the form below to send your inquiry securely to Aronson Law. You will receive an email confirming delivery.</p>
       </div>
 
       <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
         <label className="text-[16px] font-bold text-[#1d2938]">
           Full Name <span className="text-[var(--aronson-garnet)]">*</span>
-          <input className={inputClass} type="text" name="name" autoComplete="name" required />
+          <input className={inputClass} type="text" name="name" autoComplete="name" maxLength={120} required />
         </label>
         <label className="text-[16px] font-bold text-[#1d2938]">
           Email Address <span className="text-[var(--aronson-garnet)]">*</span>
-          <input className={inputClass} type="email" name="email" autoComplete="email" required />
+          <input className={inputClass} type="email" name="email" autoComplete="email" maxLength={254} required />
         </label>
         <label className="text-[16px] font-bold text-[#1d2938]">
           Telephone
-          <input className={inputClass} type="tel" name="phone" autoComplete="tel" />
+          <input className={inputClass} type="tel" name="phone" autoComplete="tel" maxLength={40} />
         </label>
         <label className="text-[16px] font-bold text-[#1d2938]">
           Preferred Contact Method
@@ -93,18 +115,31 @@ export default function ContactForm() {
 
       <label className="mt-6 block text-[16px] font-bold text-[#1d2938]">
         Brief Description <span className="text-[var(--aronson-garnet)]">*</span>
-        <textarea className={`${inputClass} min-h-40 resize-y`} name="message" required placeholder="Please provide a general description only. Do not include confidential or time-sensitive information." />
+        <textarea className={`${inputClass} min-h-40 resize-y`} name="message" maxLength={4000} required placeholder="Please provide a general description only. Do not include confidential or time-sensitive information." />
       </label>
+
+      <div className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+        <label>
+          Leave this field empty
+          <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+        </label>
+      </div>
 
       <div className="mt-6 border-l-2 border-[#d3a13a] bg-[#fbf7f0] px-5 py-4 text-[15px] leading-6 text-[#555d67]">
         Submitting an inquiry does not create an attorney-client relationship. Please do not send confidential information until Aronson Law confirms representation.
       </div>
 
-      <button type="submit" className="mt-7 inline-flex min-h-14 w-full items-center justify-center bg-[var(--aronson-garnet)] px-8 py-4 text-sm font-bold uppercase tracking-[0.08em] text-white shadow-[0_12px_28px_rgba(122,20,35,0.22)] transition hover:-translate-y-0.5 hover:bg-[#941d2e] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d3a13a] focus-visible:ring-offset-2 sm:w-auto">
-        Prepare Consultation Email <span aria-hidden="true" className="ml-3">→</span>
+      <button type="submit" disabled={isSubmitting} className="mt-7 inline-flex min-h-14 w-full items-center justify-center bg-[var(--aronson-garnet)] px-8 py-4 text-sm font-bold uppercase tracking-[0.08em] text-white shadow-[0_12px_28px_rgba(122,20,35,0.22)] transition hover:-translate-y-0.5 hover:bg-[#941d2e] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d3a13a] focus-visible:ring-offset-2 disabled:cursor-wait disabled:opacity-65 disabled:hover:translate-y-0 sm:w-auto">
+        {isSubmitting ? "Sending Inquiry…" : "Send Consultation Request"} <span aria-hidden="true" className="ml-3">→</span>
       </button>
 
-      <p aria-live="polite" className="mt-4 min-h-6 text-[15px] font-semibold text-[var(--aronson-garnet)]">{status}</p>
+      <p
+        aria-live="polite"
+        role="status"
+        className={`mt-4 min-h-6 text-[15px] font-semibold ${status.type === "success" ? "text-[#24633f]" : "text-[var(--aronson-garnet)]"}`}
+      >
+        {status.message}
+      </p>
     </form>
   );
 }
