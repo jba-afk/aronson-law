@@ -48,7 +48,7 @@ export default function MitchCredentials() {
             </div>
           </div>
           <div className="relative mt-9 aspect-[16/8] overflow-hidden border border-[#ded4c7]">
-            <Image src="/photography/trusts-estates-hero.png" alt="Law books representing Mitch Cornwell's education and experience" fill sizes="(max-width: 1023px) 90vw, 28vw" className="object-cover" />
+            <Image src="/photography/mitch-education-books.jpg" alt="Law books representing Mitch Cornwell's education and experience" fill sizes="(max-width: 1023px) 90vw, 28vw" className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#071726]/25 to-transparent" />
           </div>
           <p className="mt-6 text-[16px] leading-7 text-[#4a535e]">Mitch&apos;s educational background reflects the same qualities he brings to his practice today: careful analysis, thoughtful communication, and attention to detail.</p>
@@ -72,7 +72,7 @@ export default function MitchCredentials() {
           <h2 className="serif text-3xl text-[var(--aronson-navy)] sm:text-4xl">Outside the Office</h2>
           <div className="mt-4 h-0.5 w-14 bg-[#d3a13a]" />
           <div className="relative mt-8 aspect-[16/10] overflow-hidden border border-[#ded4c7]">
-            <Image src="/photography/annapolis-evening.png" alt="Sunset over the Maryland waterfront" fill sizes="(max-width: 1023px) 90vw, 28vw" className="object-cover" />
+            <Image src="/photography/mitch-eastern-shore-sunset.jpg" alt="Sunset over the Maryland waterfront" fill sizes="(max-width: 1023px) 90vw, 28vw" className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#071726]/35 via-transparent to-transparent" />
           </div>
           <div className="mt-8 space-y-5 text-[17px] leading-8 text-[#303844]">
