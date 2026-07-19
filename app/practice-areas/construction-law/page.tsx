@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import ConstructionLawHero from "@/components/practice-areas/construction-law/ConstructionLawHero";
 import ConstructionLawOverview from "@/components/practice-areas/construction-law/ConstructionLawOverview";
 import ConstructionLawServices from "@/components/practice-areas/construction-law/ConstructionLawServices";
@@ -9,6 +10,13 @@ import ConstructionLawResults from "@/components/practice-areas/construction-law
 import ConstructionLawFAQ from "@/components/practice-areas/construction-law/ConstructionLawFAQ";
 import ConstructionLawCTA from "@/components/practice-areas/construction-law/ConstructionLawCTA";
 import ConstructionLawClosingImage from "@/components/practice-areas/construction-law/ConstructionLawClosingImage";
+
+export const metadata: Metadata = {
+  title: "Construction Law",
+  description:
+    "Maryland construction-law counsel for owners, contractors, subcontractors, and design professionals in contracts, claims, and disputes.",
+  alternates: { canonical: "/practice-areas/construction-law" },
+};
 
 export default function ConstructionLawPage() {
   return (

@@ -50,7 +50,7 @@ export default function FamilyLawHero() {
             </Link>
 
             <Link
-              href="/attorneys/justin-aronson"
+              href="/our-attorneys/justin-aronson"
               className="inline-flex min-h-14 items-center justify-center border border-[var(--chesapeake-gold)] px-7 text-sm font-bold uppercase tracking-[0.06em] text-white transition hover:bg-white hover:text-[var(--aronson-navy)]"
             >
               Meet Justin Aronson

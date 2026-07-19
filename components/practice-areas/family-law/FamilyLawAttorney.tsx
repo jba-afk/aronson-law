@@ -47,7 +47,7 @@ export default function FamilyLawAttorney() {
             </div>
 
             <Link
-              href="/attorneys/justin-aronson"
+              href="/our-attorneys/justin-aronson"
               className="mt-8 inline-flex items-center gap-2 self-start text-sm font-bold uppercase tracking-[0.08em] text-[var(--aronson-garnet)] transition hover:text-[var(--aronson-garnet-light)]"
             >
               Meet Justin Aronson

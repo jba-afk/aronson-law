@@ -62,7 +62,7 @@ export default function TrustsEstatesHero() {
             </PrimaryButton>
 
             <a
-              href="/attorneys/mitchell-cornwell"
+              href="/our-attorneys/mitchell-cornwell"
               className="inline-flex min-h-12 items-center justify-center rounded-[3px] border-2 border-[var(--chesapeake-gold)] bg-white/10 px-7 text-sm font-extrabold uppercase tracking-[0.025em] !text-white shadow-[0_8px_20px_rgba(0,0,0,0.2)] backdrop-blur-[2px] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--chesapeake-gold)] hover:!text-[var(--aronson-navy)]"
             >
               Meet Mitch Cornwell

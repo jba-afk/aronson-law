@@ -29,7 +29,7 @@ const quickLinks = [
   },
   {
     label: "Our Attorneys",
-    href: "/attorneys",
+    href: "/our-attorneys",
   },
   {
     label: "Contact",

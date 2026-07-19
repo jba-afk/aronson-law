@@ -8,7 +8,7 @@ const attorneys = [
     title: "Managing Member",
     image: "/attorneys/justin-aronson-hires.jpg",
     imageAlt: "Justin B. Aronson",
-    href: "/attorneys/justin-aronson",
+    href: "/our-attorneys/justin-aronson",
     linkLabel: "Meet Justin",
     practiceAreas: [
       "Family Law",
@@ -21,7 +21,7 @@ const attorneys = [
     title: "Of Counsel",
     image: "/attorneys/mitch-cornwell.jpg",
     imageAlt: "Mitchell T. Cornwell",
-    href: "/attorneys/mitch-cornwell",
+    href: "/our-attorneys/mitchell-cornwell",
     linkLabel: "Meet Mitch",
     practiceAreas: ["Trusts & Estates", "Probate", "Estate Planning"],
   },

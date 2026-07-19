@@ -46,7 +46,7 @@ export default function OurFirmHero() {
             </Link>
 
             <Link
-              href="/attorneys"
+              href="/our-attorneys"
               className="inline-flex min-h-14 items-center justify-center rounded-sm border border-[var(--chesapeake-gold)] px-8 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-[var(--chesapeake-gold)] hover:text-[var(--aronson-navy)]"
             >
               Meet Our Attorneys

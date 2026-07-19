@@ -3,9 +3,10 @@ import Image from "next/image";
 import ContactForm from "@/components/contact/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact Aronson Law | Easton, Maryland",
+  title: "Contact | Easton, Maryland",
   description:
     "Contact Aronson Law in Easton, Maryland to request a consultation regarding family law, construction law, commercial litigation, trusts and estates, probate, or business planning.",
+  alternates: { canonical: "/contact" },
 };
 
 function ContactIcon({ type }: { type: "pin" | "phone" | "email" | "clock" }) {
